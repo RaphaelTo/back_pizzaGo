@@ -2,6 +2,24 @@ import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
 
 class DessertController {
+    async checkId(param) {
+        let check  = false;
+        await this.getDessertById(param).then(resp => {
+             switch (resp.status) {
+                 case 'success':
+                     check = true;
+                 break;
+                 case 'error' :
+                     check = false;
+                 break;
+                 default :
+                 check = false;
+                 break;
+             }
+         });
+         return check;
+    }
+
     getAllDessert() {
         return new Promise(async (next) => {
             const Desserts = await prisma.desserts()

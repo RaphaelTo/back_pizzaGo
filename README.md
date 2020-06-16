@@ -1,6 +1,6 @@
 # Projet app - commande de Pizza
 
-Contributing : [here](.github/contributing.md)
+### Contributing : [here](.github/contributing.md)
 
 ## MySQL with Docker
 
