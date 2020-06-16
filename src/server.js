@@ -11,6 +11,7 @@ import { checkToken } from './Middleware/JWT';
 import { anonymeRouteUser, adminRouteUser } from './Routes/UserRoute';
 import { anonymeRouteDrink } from './Routes/DrinkRoute';
 import { anonymeRouteDessert } from './Routes/DessertRoute';
+import { anonymeRouteIngredient } from './Routes/IngredientRoute';
 import { anonymeRoutePizza, adminRoutePizza } from './Routes/PizzaRoute';
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(`${url}/user`, anonymeRouteUser);
 app.use(`${url}/drink`, anonymeRouteDrink);
 app.use(`${url}/pizza`, anonymeRoutePizza);
 app.use(`${url}/dessert`, anonymeRouteDessert);
+app.use(`${url}/ingredient`, anonymeRouteIngredient);
 app.use(`${url}/admin/user`, checkToken ,adminRouteUser);
 app.use(`${url}/admin/pizza`, checkToken, adminRoutePizza);
 
