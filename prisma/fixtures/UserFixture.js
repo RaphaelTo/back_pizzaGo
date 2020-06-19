@@ -2,13 +2,13 @@ const { prisma } = require('../../src/generated/prisma-client');
 
 async function userFixture() {
     await prisma.createUser({
-        firstname: 'Raphael',
-        lastname: 'Torres Paiva',
-        address: '9 rue vincent palaric',
+        firstname: 'Rafik',
+        lastname: 'Mouloude',
+        address: '18 Jean pascal du borris',
         zip: 93400,
         country: 'Saint-Ouen',
-        tel: '0622411970',
-        email: 'paiva.raphaelt@gmail.com',
+        tel: '0825411940',
+        email: 'Rafik_mlde@ipssi.com',
         password: 'Azerty99-',
         tokenActivate: 'a',
         role: { set: ["USER", "ADMIN"] }
