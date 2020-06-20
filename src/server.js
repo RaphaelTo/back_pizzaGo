@@ -14,6 +14,7 @@ import { anonymeRouteDessert, adminRouteDessert } from './Routes/DessertRoute';
 import { anonymeRouteCategory, adminRouteCategory } from './Routes/CategoryRoute';
 import { anonymeRoutePizza, adminRoutePizza } from './Routes/PizzaRoute';
 import { anonymeRoutePromo, adminRoutePromo } from './Routes/PromoRoute';
+import { anonymeRouteSize } from './Routes/SizeRoute';
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(`${url}/pizza`, anonymeRoutePizza);
 app.use(`${url}/dessert`, anonymeRouteDessert);
 app.use(`${url}/category`, anonymeRouteCategory);
 app.use(`${url}/promo`, anonymeRoutePromo);
+app.use(`${url}/size`, anonymeRouteSize);
 
 app.use(`${url}/admin/user`, checkToken ,adminRouteUser);
 app.use(`${url}/admin/pizza`, checkToken, adminRoutePizza);
