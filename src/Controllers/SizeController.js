@@ -24,6 +24,15 @@ class SizeController {
             }
         })
     }
+
+    createSize(sizeObject) {
+        return new Promise(async (next) => {
+            if(typeof(sizeObject.name) !== 'string' || typeof(sizeObject.price) !== 'number') next(error('Error/Miss in types field'));
+
+            const Size = await prisma.createSize(sizeObject);
+            next(success(Size));
+        })
+    }
 }
 
 export default new SizeController;
