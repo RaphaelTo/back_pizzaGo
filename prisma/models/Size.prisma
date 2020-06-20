@@ -1,5 +1,5 @@
 type Size {
     id: ID! @id
     name: String!
-    size: String!
+    price: Float!
 }
