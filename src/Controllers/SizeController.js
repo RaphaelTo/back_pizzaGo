@@ -12,6 +12,18 @@ class SizeController {
             }
         })
     }
+
+    getSizeById(id) {
+        return new Promise(async (next) => {
+            const Size = await prisma.size(id)
+            
+            if (Size) {
+                next(success(Size));
+            }else {
+                next(error('Id not found'));
+            }
+        })
+    }
 }
 
 export default new SizeController;
