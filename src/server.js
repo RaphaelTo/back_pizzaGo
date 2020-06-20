@@ -9,8 +9,8 @@ import { checkToken } from './Middleware/JWT';
 
 // Route import
 import { anonymeRouteUser, adminRouteUser } from './Routes/UserRoute';
-import { anonymeRouteDrink } from './Routes/DrinkRoute';
-import { anonymeRouteDessert } from './Routes/DessertRoute';
+import { anonymeRouteDrink, adminRouteDrink } from './Routes/DrinkRoute';
+import { anonymeRouteDessert, adminRouteDessert } from './Routes/DessertRoute';
 import { anonymeRouteCategory, adminRouteCategory } from './Routes/CategoryRoute';
 import { anonymeRoutePizza, adminRoutePizza } from './Routes/PizzaRoute';
 
@@ -25,8 +25,11 @@ app.use(`${url}/drink`, anonymeRouteDrink);
 app.use(`${url}/pizza`, anonymeRoutePizza);
 app.use(`${url}/dessert`, anonymeRouteDessert);
 app.use(`${url}/category`, anonymeRouteCategory);
+
 app.use(`${url}/admin/user`, checkToken ,adminRouteUser);
 app.use(`${url}/admin/pizza`, checkToken, adminRoutePizza);
 app.use(`${url}/admin/category`, checkToken, adminRouteCategory);
+app.use(`${url}/admin/drink`, checkToken, adminRouteDrink);
+app.use(`${url}/admin/dessert`, checkToken, adminRouteDessert);
 
 app.listen(PORT, () => console.log(`SERVER IS RUNNING ON PORT ${PORT}`));
