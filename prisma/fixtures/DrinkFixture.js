@@ -1,6 +1,6 @@
 const { prisma } = require('../../src/generated/prisma-client');
 
-async function ingredientFixture() {
+async function drinkFixture() {
     await prisma.createDrink({
         price: 1.50,
         name: 'Coca-Cola',
@@ -25,4 +25,4 @@ async function ingredientFixture() {
         oz: 1.25,
     })
 }
-ingredientFixture().catch(e => console.error(e));
+drinkFixture().catch(e => console.error(e));
