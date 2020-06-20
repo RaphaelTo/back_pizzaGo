@@ -9,6 +9,14 @@ var models = [
     embedded: false
   },
   {
+    name: "Promo",
+    embedded: false
+  },
+  {
+    name: "Size",
+    embedded: false
+  },
+  {
     name: "Dessert",
     embedded: false
   },
@@ -17,7 +25,7 @@ var models = [
     embedded: false
   },
   {
-    name: "Ingredient",
+    name: "User",
     embedded: false
   },
   {
@@ -26,10 +34,6 @@ var models = [
   },
   {
     name: "Pizza",
-    embedded: false
-  },
-  {
-    name: "User",
     embedded: false
   }
 ];
