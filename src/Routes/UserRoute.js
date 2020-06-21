@@ -173,9 +173,17 @@ anonymeRouteUser.route('/activateAccount/:token')
         const user = await User.activateAccount(req.params.token);
         res.json(user);
     })
-    
+
 anonymeRouteUser.route('/forgetPassword')
     .post(async (req, res) => {
         const user = await User.forgetPassword(req.body.email);
         res.json(user);
+    })
+anonymeRouteUser.route('/resetPassword/:token')
+    .post(async (req, res) => {
+        const newPassword = req.body.firstPassword === req.body.secondPassword ? req.body.firstPassword : res.json(error("Error not the same password"));
+        const objResetPassword = {tokenReset: req.params.token, pwd: newPassword};
+        
+        const changePasswordUser = await User.resetPassword(objResetPassword);
+        res.json(changePasswordUser);
     })
