@@ -44,7 +44,7 @@ class PromoController {
 
     addPromo(param) {
         return new Promise(async (next) => {
-            if (param.price && param.name) {
+            if (param.amount && param.name) {
                 const Promos = await prisma.createPromo(param);
                 next(success(Promos));
             } else {
@@ -68,7 +68,7 @@ class PromoController {
 
     async updatePromo(param) {
         return new Promise(async (next) => {
-            if (param.where.id && param.data.name && param.data.price) {
+            if (param.where.id && param.data.name && param.data.amount) {
                 const Promos = await prisma.updatePromo(param);
                 next(success(Promos));
             } else {
