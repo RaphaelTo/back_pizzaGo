@@ -179,6 +179,26 @@ class UserController {
         })
     }
 
+    forgetPassword(email) {
+        return new Promise(async next => {
+            const checkEmail = await this.existAccount(email);
+
+            if(checkEmail){
+                const lessCharSpecial = checkEmail.result.users[0].password.replace("/", "");
+                await prisma.updateUser({where: {id: checkEmail.result.users[0].id}, data:{tokenResetPassword: lessCharSpecial}});
+                
+                const email = new NodeMailer({host: "smtp.gmail.com", port: 465, secure:true, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
+                const modelMailForgetPassword = email.modelMailDefault({to: checkEmail.result.users[0].email, subject: "Reset password 🖋", obj: {html: "forgetPassword", token: lessCharSpecial}});
+
+                const transport = email.createTransport();
+                const sendEmail = await transport.sendMail(modelMailForgetPassword);
+                next(success(sendEmail));
+            }else{
+                next(error('Error, this email doesnt exist'))
+            }
+        })
+    }
+
     checkUserExistByID(userId){
         return new Promise(async (next) => {
             const checkuser = await prisma.user({id: userId});
@@ -207,10 +227,10 @@ class UserController {
             const getUser = await prisma.$graphql(getOnlyMailUser(email));
 
             if(getUser.users.length > 0){
-                check = false;
+                await validator.isEmail(email) ? check = true : check = false;
                 next(check);
             }else {
-                await validator.isEmail(email) ? check = true : check = false;
+                check = false;
                 next(check);
             }
 
