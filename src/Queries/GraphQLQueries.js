@@ -79,3 +79,22 @@ export const getOrderWithUser = `
         }
     }
 `
+
+
+export const getOrderByUser = (id) => {
+    return `
+        query {
+            orders(where: {user : {id : "${id}"}}) {
+                id
+                price
+                date
+                status
+                promo {
+                    id
+                    name
+                    amount
+                }
+            }
+        }
+    `
+} 
