@@ -13,9 +13,7 @@ anonymeRouteCategory.route('/')
     adminRouteCategory.route('/add')
     .post(async (req, res) => {
         const param = {
-            price: req.body.price,
             name: req.body.name,
-            oz: req.body.oz
         };
         const Categorys = await Category.addCategory(param);
         res.json(Categorys);
@@ -44,9 +42,7 @@ adminRouteCategory.route('/update')
         const param = {
             where: { id: req.body.id },
             data: {
-                price: req.body.price,
                 name: req.body.name,
-                oz: req.body.oz
             }
         }
         const Categorys = await Category.updateCategory(param);
