@@ -40,7 +40,7 @@ export const getOnlyMailUser = (email) => {
     return `
         query {
             users(where : {email : "${email}"}){
-                email
+                email,
             }
         }
     `
@@ -50,6 +50,7 @@ export const getUser = (email) => {
     return `
         query {
             users(where : {email : "${email}"}){
+                id
                 email
                 password
                 role
