@@ -26,9 +26,9 @@ adminRouteSize.route('/')
 
         if (role.indexOf('ROLE_ADMIN') !== -1){
             const create = await Size.createSize(req.body);
-            res.json(create)
+            res.json(create);
         }else {
-            error('You are not an admin')
+            error('You are not an admin');
         }
     })
 
@@ -37,12 +37,25 @@ adminRouteSize.route('/:id')
         const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
         const { role } = decode.payload;
 
-        const sizeBody = {where : {id : req.params.id}, data : req.body}
+        const sizeBody = {where : {id : req.params.id}, data : req.body};
 
         if (role.indexOf('ROLE_ADMIN') !== -1){
-            const update = await Size.updateSize(sizeBody)
-            res.json(update)
+            const updateSize = await Size.updateSize(sizeBody);
+            res.json(updateSize);
         }else {
-            error('You are not an admin')
+            error('You are not an admin');
+        }
+    })
+
+    .delete(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { role } = decode.payload;
+
+        if (role.indexOf('ROLE_ADMIN') !== -1){
+            const idSize = {id : req.params.id};
+            const deleteSize = await Size.deleteSize(idSize);
+            res.json(deleteSize);
+        }else {
+            error('You are not an admin');
         }
     })
