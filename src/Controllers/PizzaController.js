@@ -35,17 +35,17 @@ class PizzaController {
             }
         })
     }
-    /* a refaire
+
     createPizza(pizza){
         return new Promise(async (next) => {
-            if(pizza.price && pizza.size && pizza.composition && pizza.ingredient && pizza.category) {
+            if(pizza.name && pizza.size && pizza.composition && pizza.category) {
                 const addPizza = await prisma.createPizza(pizza);
                 next(success(addPizza));
             }else {
                 next(error('Empty fields'));
             }
         })
-    }*/
+    }
 
     async deletePizzaById(pizzaId){
         return new Promise(async (next) => {
