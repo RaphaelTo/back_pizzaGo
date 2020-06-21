@@ -57,9 +57,21 @@ class UserController {
     deleteUser(id) {
         return new Promise(async (next) => {
             if(await this.checkUserExistByID(id)){
+                console.log(id)
+                await prisma.deleteUser({id: id});
                 next(success('User has been deleted'));
             }else{
                 next(error("Doesn't exist"));
+            }
+        })
+    }
+
+    updateUser() {
+        return new Promise(async next => {
+            if(await this.checkUserExistByID()){
+                next();
+            } else {
+                next(error("Doesn't exist"))
             }
         })
     }
