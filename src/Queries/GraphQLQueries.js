@@ -58,3 +58,24 @@ export const getUser = (email) => {
         }
     `
 }
+
+export const getOrderWithUser = `
+    fragment getOrderWithUser on Order {
+        id
+        price
+        date
+        status
+        user {
+            id
+            lastname
+            firstname
+            tel
+        }
+        content
+        promo {
+            id
+            name
+            amount
+        }
+    }
+`
