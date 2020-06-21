@@ -5,7 +5,7 @@ import JWT from 'jsonwebtoken';
 import NodeMailer from '../Smtp/NodeMailer';
 import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
-import { getOnlyMailUser, getUser, getCurrentUser, getUserByActivateToken } from '../Queries/GraphQLQueries';
+import { getOnlyMailUser, getUser, getCurrentUser, getUserByActivateToken, getUserByResetToken } from '../Queries/GraphQLQueries';
 
 class UserController {
     getAllUser() {
@@ -144,7 +144,7 @@ class UserController {
 
             if(checkMail.result !== "not found"){
                 const { password, tokenActivate } = checkMail.result.users[0];
-                if(await this.checkAccountActivate(tokenActivate)){
+                if(await this.checkAccountActivate(tokenActivate) || tokenActivate === null){
                     const decrypt = await this.decryptorData(user.data.password, password);
                     if(decrypt){
                         const token = await this.createTokenJWT(checkMail.result.users[0]);
@@ -196,6 +196,27 @@ class UserController {
             }else{
                 next(error('Error, this email doesnt exist'))
             }
+        })
+    }
+
+    resetPassword(objResetPassword) {
+        return new Promise(async next => {
+            const getUser = await prisma.$graphql(getUserByResetToken(objResetPassword.tokenReset))
+            if(getUser.users.length > 0){
+                const { id } = getUser.users[0];
+                const cryptPassword = await this.encryptorData(objResetPassword.pwd)
+                await prisma.updateUser({where:{id: id}, data: {password: cryptPassword, tokenResetPassword: null}});
+
+                const email = new NodeMailer({host: "smtp.gmail.com", port: 465, secure:true, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
+                const modelMailResetPassword = email.modelMailDefault({to: getUser.users[0].email, subject: "Password has been reset ✅", obj: {html: "resetPassword"}});
+
+                const transport = email.createTransport();
+                const sendEmail = await transport.sendMail(modelMailResetPassword);
+                next(success(sendEmail));
+            }else{
+                next(error("Error this token doesnt exist"))
+            }
+            console.log(getUser);
         })
     }
 
