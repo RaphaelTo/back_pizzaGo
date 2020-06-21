@@ -77,6 +77,18 @@ export const getCurrentUser = (email) => {
     `
 }
 
+export const getUserByActivateToken = (token) => {
+    return `
+        query {
+            users(where: {tokenActivate: "${token}"}){
+                id
+                email
+                tokenActivate
+            }
+        }
+    `
+}
+
 export const getOrderWithUser = `
     fragment getOrderWithUser on Order {
         id
