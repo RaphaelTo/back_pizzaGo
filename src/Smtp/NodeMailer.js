@@ -21,9 +21,9 @@ export default class NodeMailer {
         })
     }
 
-    modelMailDefault({to, subject, html}) {
+    modelMailDefault({to, subject, obj}) {
         let futurHTML = "";
-        if(html === "mustActivate") futurHTML = this.templateActivateYourAccount();
+        if(obj.html === "mustActivate") futurHTML = this.templateActivateYourAccount(obj.token);
 
         return  {
             from: `"Pizza GO 🍕" <${this.auth.email}>`, // sender address
@@ -33,11 +33,11 @@ export default class NodeMailer {
         }
     }
 
-    templateActivateYourAccount() {
+    templateActivateYourAccount(token) {
         return `
             <div>
                 <h1>Bienvenue sur Pizza GO </h1>
-                <p>Avant d'utiliser votre compte veuillez l'activer en cliquant <a href="">ici</a></p>
+                <p>Avant d'utiliser votre compte veuillez l'activer en cliquant <a href="http://localhost:3000/api/v1/user/activateAccount/${token}">ici</a></p>
             </div>
         `
     } 
