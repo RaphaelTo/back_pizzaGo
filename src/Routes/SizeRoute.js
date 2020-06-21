@@ -28,7 +28,7 @@ adminRouteSize.route('/')
             const create = await Size.createSize(req.body);
             res.json(create);
         }else {
-            error('You are not an admin');
+            res.json(error('You are not an admin'));
         }
     })
 
@@ -43,7 +43,7 @@ adminRouteSize.route('/:id')
             const updateSize = await Size.updateSize(sizeBody);
             res.json(updateSize);
         }else {
-            error('You are not an admin');
+            res.json(error('You are not an admin'));
         }
     })
 
@@ -56,6 +56,6 @@ adminRouteSize.route('/:id')
             const deleteSize = await Size.deleteSize(idSize);
             res.json(deleteSize);
         }else {
-            error('You are not an admin');
+            res.json(error('You are not an admin'));
         }
     })
