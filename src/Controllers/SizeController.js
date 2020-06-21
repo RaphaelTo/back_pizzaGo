@@ -33,6 +33,15 @@ class SizeController {
             next(success(Size));
         })
     }
+
+    updateSize(sizeObject) {
+        return new Promise(async (next) => {
+            if(!sizeObject.where.id && !sizeObject.data.name && !sizeObject.data.price) next(error('Error, miss body or id'));
+            
+            const updateSize = await prisma.updateSize(sizeObject);
+            next(success(updateSize));
+        })
+    }
 }
 
 export default new SizeController;
