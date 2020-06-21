@@ -60,14 +60,11 @@ class UserController {
                 });
 
                 const email = new NodeMailer({host: "smtp.gmail.com", port: 465, secure:true, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
+                const modelMailActivate = email.modelMailDefault({to: user.data.email, subject: "Activate your account 💁🏻‍♂️", html: "mustActivate"});
+
                 const transport = email.createTransport();
-                const sendEmail = await transport.sendMail({
-                    from: `"Pizza GO 🍕" <${email.auth.email}>`, // sender address
-                    to: user.data.email, // list of receivers
-                    subject: "Hello ✔", // Subject line
-                    html: "<b>Hello world?</b>", // html body
-                })
-                console.log(sendEmail);
+                const sendEmail = await transport.sendMail(modelMailActivate);
+
                 next(success('user has been added'));
             } else {
                 next(error("this email has been used"));
