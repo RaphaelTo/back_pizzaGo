@@ -59,6 +59,33 @@ class PizzaController {
         })
     }
 
+    updatePizzaById(pizzaObject) {
+        return new Promise(async next => {
+            const check = await this.getPizzaById(pizzaObject.id);
+
+            if(check) {
+                const updateObject = {
+                    where: { id: pizzaObject.id },
+                    data:{ 
+                        name: pizzaObject.name,
+                        composition: pizzaObject.composition,
+                        size: {
+                            connect: {id : pizzaObject.sizeId ? pizzaObject.sizeId : check.result.size.id}
+                        },
+                        category: {
+                            connect: {id : pizzaObject.categoryId ? pizzaObject.categoryId : check.result.category.id}
+                        }
+                    }
+                };
+
+                const updatePizza = await prisma.updatePizza(updateObject);
+                next(success(updatePizza));
+            }else {
+                next(error('Pizza not found'));
+            }
+        })
+    }
+
     checkPizzaExist(pizzaId){
         return new Promise(async (next) => {
             const checkpizza = await prisma.pizza(pizzaId);
