@@ -1,14 +1,12 @@
 export const getPizzaCatIng = `
     fragment getPizzaCatIng on Pizza {
         id
-        price
-        size
+        name
         composition
-        ingredient {
-            id 
-            price
-            quantity
+        size{
+            id
             name
+            price
         }
         category {
             id
@@ -20,18 +18,16 @@ export const getPizzaCatIng = `
 export const getPizzaByCat = (name) => {
     return `
         query {
-            pizzas(where: {category_every : {name : "${name}"}}) {
+            pizzas(where: {category : {name : "${name}"}}) {
                 id
-                price
-                size
+                name
                 composition
-                ingredient {
+                size{
                     id
-                    price
                     name
-                    quantity
+                    price
                 }
-                category{ 
+                category {
                     id
                     name
                 }

@@ -720,7 +720,7 @@ input PizzaWhereUniqueInput {
 type Promo {
   id: ID!
   name: String!
-  promo: Int!
+  amount: Int!
 }
 
 type PromoConnection {
@@ -732,7 +732,7 @@ type PromoConnection {
 input PromoCreateInput {
   id: ID
   name: String!
-  promo: Int!
+  amount: Int!
 }
 
 input PromoCreateOneInput {
@@ -750,14 +750,14 @@ enum PromoOrderByInput {
   id_DESC
   name_ASC
   name_DESC
-  promo_ASC
-  promo_DESC
+  amount_ASC
+  amount_DESC
 }
 
 type PromoPreviousValues {
   id: ID!
   name: String!
-  promo: Int!
+  amount: Int!
 }
 
 type PromoSubscriptionPayload {
@@ -780,17 +780,17 @@ input PromoSubscriptionWhereInput {
 
 input PromoUpdateDataInput {
   name: String
-  promo: Int
+  amount: Int
 }
 
 input PromoUpdateInput {
   name: String
-  promo: Int
+  amount: Int
 }
 
 input PromoUpdateManyMutationInput {
   name: String
-  promo: Int
+  amount: Int
 }
 
 input PromoUpdateOneInput {
@@ -836,14 +836,14 @@ input PromoWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  promo: Int
-  promo_not: Int
-  promo_in: [Int!]
-  promo_not_in: [Int!]
-  promo_lt: Int
-  promo_lte: Int
-  promo_gt: Int
-  promo_gte: Int
+  amount: Int
+  amount_not: Int
+  amount_in: [Int!]
+  amount_not_in: [Int!]
+  amount_lt: Int
+  amount_lte: Int
+  amount_gt: Int
+  amount_gte: Int
   AND: [PromoWhereInput!]
   OR: [PromoWhereInput!]
   NOT: [PromoWhereInput!]
@@ -884,7 +884,7 @@ type Query {
 type Size {
   id: ID!
   name: String!
-  size: String!
+  price: Float!
 }
 
 type SizeConnection {
@@ -896,7 +896,7 @@ type SizeConnection {
 input SizeCreateInput {
   id: ID
   name: String!
-  size: String!
+  price: Float!
 }
 
 input SizeCreateOneInput {
@@ -914,14 +914,14 @@ enum SizeOrderByInput {
   id_DESC
   name_ASC
   name_DESC
-  size_ASC
-  size_DESC
+  price_ASC
+  price_DESC
 }
 
 type SizePreviousValues {
   id: ID!
   name: String!
-  size: String!
+  price: Float!
 }
 
 type SizeSubscriptionPayload {
@@ -944,17 +944,17 @@ input SizeSubscriptionWhereInput {
 
 input SizeUpdateDataInput {
   name: String
-  size: String
+  price: Float
 }
 
 input SizeUpdateInput {
   name: String
-  size: String
+  price: Float
 }
 
 input SizeUpdateManyMutationInput {
   name: String
-  size: String
+  price: Float
 }
 
 input SizeUpdateOneInput {
@@ -1000,20 +1000,14 @@ input SizeWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  size: String
-  size_not: String
-  size_in: [String!]
-  size_not_in: [String!]
-  size_lt: String
-  size_lte: String
-  size_gt: String
-  size_gte: String
-  size_contains: String
-  size_not_contains: String
-  size_starts_with: String
-  size_not_starts_with: String
-  size_ends_with: String
-  size_not_ends_with: String
+  price: Float
+  price_not: Float
+  price_in: [Float!]
+  price_not_in: [Float!]
+  price_lt: Float
+  price_lte: Float
+  price_gt: Float
+  price_gte: Float
   AND: [SizeWhereInput!]
   OR: [SizeWhereInput!]
   NOT: [SizeWhereInput!]
