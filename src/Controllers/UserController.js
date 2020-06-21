@@ -5,7 +5,6 @@ import JWT from 'jsonwebtoken';
 import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
 import { getOnlyMailUser, getUser, getCurrentUser } from '../Queries/GraphQLQueries';
-import { secret } from '../config.json';
 
 class UserController {
     getAllUser() {
@@ -214,7 +213,7 @@ class UserController {
 
     createTokenJWT(user) {
         return new Promise(async (next) => {
-            const token = await JWT.sign({role: user.role, email: user.email, id: user.id},secret,{algorithm: 'HS256',expiresIn: '24h'});
+            const token = await JWT.sign({role: user.role, email: user.email, id: user.id},process.env.SECRET,{algorithm: 'HS256',expiresIn: '24h'});
             next(token);
         })
     }
