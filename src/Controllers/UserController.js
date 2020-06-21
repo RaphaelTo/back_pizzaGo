@@ -4,7 +4,7 @@ import JWT from 'jsonwebtoken';
 
 import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
-import { getOnlyMailUser, getUser } from '../Queries/GraphQLQueries';
+import { getOnlyMailUser, getUser, getCurrentUser } from '../Queries/GraphQLQueries';
 import { secret } from '../config.json';
 
 class UserController {
@@ -26,6 +26,17 @@ class UserController {
                 next(success(User));
             }else {
                 next(error('user doesnt exist'));
+            }
+        })
+    }
+
+    currentUser(email) {
+        return new Promise(async next => {
+            const User = await prisma.$graphql(getCurrentUser(email));
+            if(User) {
+                next(success(User));
+            }else {
+                next(error('ERROR USER'));
             }
         })
     }
