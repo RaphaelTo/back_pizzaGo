@@ -173,3 +173,9 @@ anonymeRouteUser.route('/activateAccount/:token')
         const user = await User.activateAccount(req.params.token);
         res.json(user);
     })
+    
+anonymeRouteUser.route('/forgetPassword')
+    .post(async (req, res) => {
+        const user = await User.forgetPassword(req.body.email);
+        res.json(user);
+    })
