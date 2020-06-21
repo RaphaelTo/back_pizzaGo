@@ -60,7 +60,7 @@ class UserController {
                 });
 
                 const email = new NodeMailer({host: "smtp.gmail.com", port: 465, secure:true, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
-                const modelMailActivate = email.modelMailDefault({to: user.data.email, subject: "Activate your account 💁🏻‍♂️", html: "mustActivate"});
+                const modelMailActivate = email.modelMailDefault({to: user.data.email, subject: "Activate your account 💁🏻‍♂️", obj: {html: "mustActivate", token: crypt}});
 
                 const transport = email.createTransport();
                 const sendEmail = await transport.sendMail(modelMailActivate);
