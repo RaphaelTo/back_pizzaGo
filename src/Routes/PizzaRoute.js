@@ -57,11 +57,31 @@ adminRoutePizza.route('/delete/:id')
     .delete(async (req, res) => {
         const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
         const { role } = decode.payload;
-        
+
         if (role.indexOf('ROLE_ADMIN') !== -1){
             const pizzaParam = {id : req.params.id};
             const deletePizza = await PizzaController.deletePizzaById(pizzaParam);
             res.json(deletePizza);
+        }else {
+            res.json(error('You are not an admin'));
+        }
+    })
+
+adminRoutePizza.route('/update/:id')
+    .put(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { role } = decode.payload;
+
+        if (role.indexOf('ROLE_ADMIN') !== -1){
+            const updateObject = {
+                id: req.params.id,
+                composition: req.body.composition,
+                sizeId : req.body.sizeId,
+                categoryId: req.body.categoryId
+            }
+            
+            const updatePizza = await PizzaController.updatePizzaById(updateObject);
+            res.json(updatePizza);
         }else {
             res.json(error('You are not an admin'));
         }
