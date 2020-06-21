@@ -5,7 +5,7 @@ import JWT from 'jsonwebtoken';
 import NodeMailer from '../Smtp/NodeMailer';
 import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
-import { getOnlyMailUser, getUser, getCurrentUser } from '../Queries/GraphQLQueries';
+import { getOnlyMailUser, getUser, getCurrentUser, getUserByActivateToken } from '../Queries/GraphQLQueries';
 
 class UserController {
     getAllUser() {
@@ -55,7 +55,7 @@ class UserController {
                     email: user.data.email,
                     password: crypt,
                     role : {set: ['ROLE_USER']},
-                    tokenActivate: crypt,
+                    tokenActivate: crypt.replace("/", ""),
                     tokenResetPassword: null
                 });
 
@@ -157,6 +157,24 @@ class UserController {
                 }
             }else {
                 next(error('Account not exist'));
+            }
+        })
+    }
+
+    activateAccount(token) {
+        return new Promise(async next => {
+            const getUser = await prisma.$graphql(getUserByActivateToken(token));
+            if(getUser){
+                const deleteActivateToken = await prisma.updateUser({where: {id: getUser.users[0].id}, data: {tokenActivate: null}});
+                
+                const email = new NodeMailer({host: "smtp.gmail.com", port: 465, secure:true, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
+                const modelMailAccountActivate = email.modelMailDefault({to: getUser.users[0].email, subject: "Account activate ! ✅", obj: {html: "TokenActivateDeleted"}});
+                
+                const transport = email.createTransport();
+                const sendEmail = await transport.sendMail(modelMailAccountActivate);
+                next(success('The token has been delete'));
+            }else {
+                next(error("Error with the token"));
             }
         })
     }
