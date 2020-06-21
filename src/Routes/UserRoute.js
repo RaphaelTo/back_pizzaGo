@@ -21,6 +21,15 @@ adminRouteUser.route('/')
         }
     })
 
+adminRouteUser.route('/currentUser')
+    .get(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { email } = decode.payload;
+
+        const getCurrentUser = await User.currentUser(email)
+        res.json(getCurrentUser);
+    })
+
 adminRouteUser.route('/:id')
     .get(async (req, res) => {
         const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
@@ -121,7 +130,7 @@ adminRouteUser.route('/updateCurrentUser')
         res.json(currentUserUpdate);
     })
 
-    
+  
 anonymeRouteUser.route('/add')
     .post(async (req, res) => {
         const checkPass = req.body.firstPassword === req.body.secondPassword ? req.body.firstPassword : false;
