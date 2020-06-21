@@ -167,3 +167,9 @@ anonymeRouteUser.route('/connection')
         const connectionUser = await User.connection(param);
         res.json(connectionUser);
     })
+
+anonymeRouteUser.route('/activateAccount/:token')
+    .get(async (req, res) => {
+        const user = await User.activateAccount(req.params.token);
+        res.json(user);
+    })
