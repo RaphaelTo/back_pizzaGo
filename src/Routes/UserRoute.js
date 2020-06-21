@@ -102,6 +102,25 @@ adminRouteUser.route('/update/:id')
         }
     })
 
+adminRouteUser.route('/updateCurrentUser')
+    .put(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { id } = decode.payload;
+        
+        const updateUser = {
+            id : id,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            zip: req.body.zip,
+            country: req.body.country,
+            tel: req.body.tel
+        };
+
+        const currentUserUpdate = await User.updateCurrentUser(updateUser);
+        res.json(currentUserUpdate);
+    })
+
     
 anonymeRouteUser.route('/add')
     .post(async (req, res) => {
