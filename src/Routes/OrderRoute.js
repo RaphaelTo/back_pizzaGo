@@ -5,7 +5,7 @@ import OrderController from '../Controllers/OrderController';
 export const anonymeRouteOrder = express.Router();
 export const adminRouteOrder = express.Router();
 
-anonymeRouteOrder.route('/')
+adminRouteOrder.route('/')
     .get(async (req, res) => {
         const Orders = await Order.getAllOrder();
         res.json(Orders);
@@ -32,7 +32,7 @@ anonymeRouteOrder.route('/add')
         res.json(Orders);
     })
 
-adminRouteOrder.route('/user/:id')
+anonymeRouteOrder.route('/user/:id')
     .get(async (req, res) => {
         const Order = await OrderController.getOrderByUser(req.params.id);
         res.json(Order);
@@ -56,7 +56,7 @@ anonymeRouteOrder.route('/:id')
         res.json(Orders);
     })
 
-anonymeRouteOrder.route('/update')
+adminRouteOrder.route('/update')
     .put(async (req, res) => {
         const param = {
             where: { id: req.body.id },
