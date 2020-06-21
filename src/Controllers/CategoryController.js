@@ -44,7 +44,7 @@ class CategoryController {
 
     addCategory(param) {
         return new Promise(async (next) => {
-            if (param.price && param.name && param.oz) {
+            if (param.name) {
                 const Categorys = await prisma.createCategory(param);
                 next(success(Categorys));
             } else {
@@ -68,7 +68,7 @@ class CategoryController {
 
     async updateCategory(param) {
         return new Promise(async (next) => {
-            if (param.where.id && param.data.name && param.data.oz && param.data.price) {
+            if (param.where.id && param.data.name) {
                 const Categorys = await prisma.updateCategory(param);
                 next(success(Categorys));
             } else {

@@ -23,8 +23,9 @@ anonymeRoutePromo.route('/:id')
 adminRoutePromo.route('/add')
     .post(async (req, res) => {
         const param = {
-            price: req.body.price,
-            name: req.body.name
+            name: req.body.name,
+            amount: req.body.amount
+
         };
         const Promos = await Promo.addPromo(param);
         res.json(Promos);
@@ -44,8 +45,8 @@ adminRoutePromo.route('/update')
         const param = {
             where: { id: req.body.id },
             data: {
-                price: req.body.price,
-                name: req.body.name
+                name: req.body.name,
+                amount: req.body.amount
             }
         }
         const Promos = await Promo.updatePromo(param);
