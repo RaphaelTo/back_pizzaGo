@@ -45,6 +45,34 @@ adminRouteUser.route('/delete/:id')
             res.json(error("You are not an admin"));
         }
     })
+adminRouteUser.route('/add')
+    .post(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { role } = decode.payload;
+        
+        if(role.indexOf('ROLE_ADMIN') !== -1){
+            const checkPass = req.body.firstPassword === req.body.secondPassword ? req.body.firstPassword : false;
+            
+            if(checkPass !== false) {
+                const param = {
+                    data : {
+                        firstname: req.body.firstname,
+                        lastname: req.body.lastname,
+                        tel: req.body.tel,
+                        email: req.body.email,
+                        password: checkPass,
+                    }
+                };
+
+                const addUser = await User.createAdminUser(param);
+                res.json(addUser);
+            }else {
+                res.json(error('Error, not the same password'));
+            } 
+        }else {
+            res.json(error('Error, you are not admin'));
+        }
+    })
     
 anonymeRouteUser.route('/add')
     .post(async (req, res) => {
