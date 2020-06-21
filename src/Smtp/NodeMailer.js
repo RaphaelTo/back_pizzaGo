@@ -25,6 +25,7 @@ export default class NodeMailer {
         let futurHTML = "";
         if(obj.html === "mustActivate") futurHTML = this.templateActivateYourAccount(obj.token);
         if(obj.html === "TokenActivateDeleted") futurHTML = this.templateAccountActivate();
+        if(obj.html === "forgetPassword") futurHTML = this.templateForgetPassword(obj.token);
 
         return  {
             from: `"Pizza GO 🍕" <${this.auth.email}>`, // sender address
@@ -51,5 +52,14 @@ export default class NodeMailer {
             </div>
         `
     } 
+
+    templateForgetPassword(token) {
+        return `
+            <div>
+                <h1>Vous avez oublié votre mot de passe ?</h1>
+                <p>Pour réinitialiser votre mot de passe cliquez <a href="http://localhost:3000/api/v1/user/resetPassword/${token}">ici</a></p>
+            </div>
+        `
+    }
 
 }
