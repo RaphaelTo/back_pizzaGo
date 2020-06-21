@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import validator from 'validator';
 import JWT from 'jsonwebtoken';
 
+import NodeMailer from '../Smtp/NodeMailer';
 import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
 import { getOnlyMailUser, getUser, getCurrentUser } from '../Queries/GraphQLQueries';
@@ -57,6 +58,16 @@ class UserController {
                     tokenActivate: crypt,
                     tokenResetPassword: null
                 });
+
+                const email = new NodeMailer({host: "smtp.gmail.com", port: 465, secure:true, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
+                const transport = email.createTransport();
+                const sendEmail = await transport.sendMail({
+                    from: `"Pizza GO 🍕" <${email.auth.email}>`, // sender address
+                    to: user.data.email, // list of receivers
+                    subject: "Hello ✔", // Subject line
+                    html: "<b>Hello world?</b>", // html body
+                })
+                console.log(sendEmail);
                 next(success('user has been added'));
             } else {
                 next(error("this email has been used"));
