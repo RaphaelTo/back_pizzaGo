@@ -54,6 +54,30 @@ class UserController {
         })
     }
 
+    createAdminUser(user) {
+        return new Promise(async next => {
+            if(await this.existEmail(user.data.email)){
+                const crypt = await this.encryptorData(user.data.password);
+                await prisma.createUser({
+                    firstname : user.data.firstname,
+                    lastname: user.data.lastname,
+                    address: "admin user",
+                    zip: 99999,
+                    country: "admin user",
+                    tel: user.data.tel,
+                    email: user.data.email,
+                    password:crypt,
+                    role : {set: ['ROLE_USER', 'ROLE_ADMIN']},
+                    tokenActivate: null,
+                    tokenResetPassword: null
+                });
+                next(success('Admin user created'));
+            } else {
+                next(error("Error, this mail has been used"));
+            }
+        })
+    }
+
     deleteUser(id) {
         return new Promise(async (next) => {
             if(await this.checkUserExistByID(id)){
@@ -65,7 +89,7 @@ class UserController {
             }
         })
     }
-
+    /*
     updateUser() {
         return new Promise(async next => {
             if(await this.checkUserExistByID()){
@@ -74,7 +98,7 @@ class UserController {
                 next(error("Doesn't exist"))
             }
         })
-    }
+    }*/
 
     connection(user) {
         return new Promise(async (next) => {
