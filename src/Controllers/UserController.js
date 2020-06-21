@@ -89,16 +89,17 @@ class UserController {
             }
         })
     }
-    /*
-    updateUser() {
+    
+    updateUser(objectUser) {
         return new Promise(async next => {
-            if(await this.checkUserExistByID()){
-                next();
+            if(await this.checkUserExistByID(objectUser.where.id)){
+                const updateUser = await prisma.updateUser(objectUser);
+                next(success(updateUser));
             } else {
                 next(error("Doesn't exist"))
             }
         })
-    }*/
+    }
 
     connection(user) {
         return new Promise(async (next) => {
