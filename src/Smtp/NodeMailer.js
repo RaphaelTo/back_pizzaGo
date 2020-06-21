@@ -10,7 +10,7 @@ export default class NodeMailer {
     }
 
     createTransport() {
-        nodemailer.createTransport({
+        return nodemailer.createTransport({
             host: this.host,
             port: this.port,
             secure: this.secure,
@@ -21,6 +21,14 @@ export default class NodeMailer {
         })
     }
 
+    modelMailDefault({to, subject, html}) {
 
+        return  {
+            from: `"Pizza GO 🍕" <${this.auth.user}>`, // sender address
+            to: to, // list of receivers
+            subject: subject, // Subject line
+            html: "<b>Hello world?</b>", // html body
+        }
+    }
 
 }
