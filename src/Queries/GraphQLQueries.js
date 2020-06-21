@@ -89,6 +89,18 @@ export const getUserByActivateToken = (token) => {
     `
 }
 
+export const getUserByResetToken = (token) => {
+    return `
+        query {
+            users(where: {tokenResetPassword: "${token}"}){
+                id 
+                email
+                tokenResetPassword
+            }
+        }
+    `
+}
+
 export const getOrderWithUser = `
     fragment getOrderWithUser on Order {
         id
