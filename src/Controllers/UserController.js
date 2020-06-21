@@ -101,6 +101,25 @@ class UserController {
         })
     }
 
+    updateCurrentUser(objectUser) {
+        return new Promise (async next => {
+            const {id, firstname, lastname, address, zip, country, tel } = objectUser;
+            const objectToUpdate = {
+                where: {id: id},
+                data : {
+                    firstname: firstname,
+                    lastname : lastname,
+                    address : address,
+                    zip : zip,
+                    country : country,
+                    tel : tel
+                }
+            };
+
+            next(success(await prisma.updateUser(objectToUpdate)))
+        })
+    }
+
     connection(user) {
         return new Promise(async (next) => {
             const checkMail = await this.existAccount(user.data.email);
@@ -184,7 +203,7 @@ class UserController {
 
     createTokenJWT(user) {
         return new Promise(async (next) => {
-            const token = await JWT.sign({role: user.role, email: user.email},secret,{algorithm: 'HS256',expiresIn: '24h'});
+            const token = await JWT.sign({role: user.role, email: user.email, id: user.id},secret,{algorithm: 'HS256',expiresIn: '24h'});
             next(token);
         })
     }
