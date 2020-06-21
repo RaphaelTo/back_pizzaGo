@@ -20,6 +20,7 @@ adminRouteUser.route('/')
             res.json(error("You are not an admin"));
         }
     })
+
 adminRouteUser.route('/:id')
     .get(async (req, res) => {
         const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
@@ -32,19 +33,7 @@ adminRouteUser.route('/:id')
             res.json(error("You are not an admin"));
         }
     })
-    
-adminRouteUser.route('/delete/:id')
-    .delete(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
-        const { role } = decode.payload;
-        
-        if(role.indexOf('ROLE_ADMIN') !== -1){
-            const user = await User.deleteUser(req.params.id);
-            res.json(user);
-        }else{
-            res.json(error("You are not an admin"));
-        }
-    })
+
 adminRouteUser.route('/add')
     .post(async (req, res) => {
         const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
@@ -73,6 +62,46 @@ adminRouteUser.route('/add')
             res.json(error('Error, you are not admin'));
         }
     })
+    
+adminRouteUser.route('/delete/:id')
+    .delete(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { role } = decode.payload;
+        
+        if(role.indexOf('ROLE_ADMIN') !== -1){
+            const user = await User.deleteUser(req.params.id);
+            res.json(user);
+        }else{
+            res.json(error("You are not an admin"));
+        }
+    })
+
+adminRouteUser.route('/update/:id')
+    .put(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { role } = decode.payload;
+        
+        if(role.indexOf('ROLE_ADMIN') !== -1){
+            const objectUser = {
+                where : {id: req.params.id},
+                data : {
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
+                    address: req.body.address,
+                    zip: req.body.zip,
+                    country: req.body.country,
+                    tel: req.body.tel
+                }
+            };
+
+            const updateUser = await User.updateUser(objectUser);
+            res.json(updateUser);
+        }
+        else {
+            res.json(error("Error, you are not an admin"));
+        }
+    })
+
     
 anonymeRouteUser.route('/add')
     .post(async (req, res) => {
