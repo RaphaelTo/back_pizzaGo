@@ -42,6 +42,29 @@ class SizeController {
             next(success(updateSize));
         })
     }
+
+    deleteSize(id) {
+        return new Promise (async (next) => {
+            const checkSize = await this.checkIdSize(id);
+            if(!checkSize){
+                next(error("Error, this id doesn't exist"));
+            } else {
+                const deleteSize = await prisma.deleteSize(id);
+                next(success(deleteSize));
+            }
+        })
+    }
+
+    checkIdSize(id) {
+        return new Promise(async next => {
+            const getSize = await this.getSizeById(id);
+            if(getSize.status === "success"){
+                next(true);
+            }else {
+                next(false);
+            }
+        })
+    }
 }
 
 export default new SizeController;
