@@ -60,6 +60,23 @@ export const getUser = (email) => {
     `
 }
 
+export const getCurrentUser = (email) => {
+    return `
+        query {
+            users(where : {email : "${email}"}){
+                id
+                firstname
+                lastname
+                address
+                zip
+                country
+                tel
+                email
+            }
+        }
+    `
+}
+
 export const getOrderWithUser = `
     fragment getOrderWithUser on Order {
         id
