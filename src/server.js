@@ -2,9 +2,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
 import {PORT, url} from './config';
 
 //Import middleware
+dotenv.config();
 import { checkToken } from './Middleware/JWT';
 
 // Route import

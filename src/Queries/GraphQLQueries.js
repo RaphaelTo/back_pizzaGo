@@ -40,7 +40,7 @@ export const getOnlyMailUser = (email) => {
     return `
         query {
             users(where : {email : "${email}"}){
-                email
+                email,
             }
         }
     `
@@ -50,10 +50,52 @@ export const getUser = (email) => {
     return `
         query {
             users(where : {email : "${email}"}){
+                id
                 email
                 password
                 role
                 tokenActivate
+            }
+        }
+    `
+}
+
+export const getCurrentUser = (email) => {
+    return `
+        query {
+            users(where : {email : "${email}"}){
+                id
+                firstname
+                lastname
+                address
+                zip
+                country
+                tel
+                email
+            }
+        }
+    `
+}
+
+export const getUserByActivateToken = (token) => {
+    return `
+        query {
+            users(where: {tokenActivate: "${token}"}){
+                id
+                email
+                tokenActivate
+            }
+        }
+    `
+}
+
+export const getUserByResetToken = (token) => {
+    return `
+        query {
+            users(where: {tokenResetPassword: "${token}"}){
+                id 
+                email
+                tokenResetPassword
             }
         }
     `
