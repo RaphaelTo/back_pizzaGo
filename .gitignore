@@ -5,5 +5,5 @@ yarn-error.log
 tmp-resolvers
 package-lock.json
 data
-
+env
 #le bon fichier
