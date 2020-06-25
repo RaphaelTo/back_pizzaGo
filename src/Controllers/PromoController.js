@@ -1,5 +1,6 @@
 import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
+import { getPromoByName } from '../Queries/GraphQLQueries';
 
 class PromoController {
     async checkId(param) {
@@ -38,6 +39,18 @@ class PromoController {
                 next(success(Promo));
             } else {
                 next(error('No Promo found for this id'));
+            }
+        })
+    }
+
+    getPromoByName(name) {
+        return new Promise(async next => {
+            const Promo = await prisma.$graphql(getPromoByName(name));
+            console.log(Promo)
+            if (Promo.promoes.length > 0) {
+                next(success(Promo));
+            } else {
+                next(error('No Promo found for this Name'));
             }
         })
     }
