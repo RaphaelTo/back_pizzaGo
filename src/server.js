@@ -20,7 +20,9 @@ import { anonymeRouteSize, adminRouteSize } from './Routes/SizeRoute';
 import { anonymeRouteOrder, adminRouteOrder } from './Routes/OrderRoute';
 
 const app = express();
+const cors = require('cors')
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
