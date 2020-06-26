@@ -157,7 +157,7 @@ anonymeRouteUser.route('/add')
     })
 
 anonymeRouteUser.route('/connection')
-    .get(async (req, res) => {
+    .post(async (req, res) => {
         const param = {
             data: {
                 email : req.body.email,
