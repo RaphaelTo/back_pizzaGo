@@ -3,6 +3,7 @@ export const getPizzaCatIng = `
         id
         name
         composition
+        img
         size{
             id
             name
@@ -22,6 +23,7 @@ export const getPizzaByCat = (name) => {
                 id
                 name
                 composition
+                img
                 size{
                     id
                     name
