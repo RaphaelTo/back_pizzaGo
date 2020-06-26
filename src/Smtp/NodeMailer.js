@@ -58,7 +58,7 @@ export default class NodeMailer {
         return `
             <div>
                 <h1>Vous avez oublié votre mot de passe ?</h1>
-                <p>Pour réinitialiser votre mot de passe cliquez <a href="http://localhost:3000/api/v1/user/resetPassword/${token}">ici</a></p>
+                <p>Pour réinitialiser votre mot de passe cliquez <a href="http://localhost:3000/password/update-password?id=${token}">ici</a></p>
             </div>
         `
     }
