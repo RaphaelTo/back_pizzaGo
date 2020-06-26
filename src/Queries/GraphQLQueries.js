@@ -139,4 +139,16 @@ export const getOrderByUser = (id) => {
             }
         }
     `
-} 
+}
+
+export const getPromoByName = (name) => {
+    return `
+        query {
+          promoes(where: {name : "${name}"}) {
+            id
+            name
+            amount
+          }
+        }
+    `
+}

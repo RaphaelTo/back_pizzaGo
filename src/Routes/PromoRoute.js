@@ -11,7 +11,13 @@ anonymeRoutePromo.route('/')
         res.json(Promos);
     })
 
-anonymeRoutePromo.route('/:id')
+anonymeRoutePromo.route('/name/:name')
+    .get(async (req, res) => {
+        const promo = await Promo.getPromoByName(req.params.name);
+        res.json(promo);
+    })
+
+anonymeRoutePromo.route('/Byid/:id')
     .get(async (req, res) => {
         const param = {
             id: req.params.id
