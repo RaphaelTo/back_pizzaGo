@@ -164,7 +164,8 @@ class UserController {
     activateAccount(token) {
         return new Promise(async next => {
             const getUser = await prisma.$graphql(getUserByActivateToken(token));
-            if(getUser){
+            console.log(getUser)
+            if(getUser.users.length > 0){
                 const deleteActivateToken = await prisma.updateUser({where: {id: getUser.users[0].id}, data: {tokenActivate: ""}});
                 
                 const email = new NodeMailer({host: process.env.HOST, port: process.env.PORT, secure: process.env.SECURE, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
