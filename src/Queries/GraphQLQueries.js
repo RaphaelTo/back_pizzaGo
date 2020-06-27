@@ -71,7 +71,7 @@ export const getCurrentUser = (email) => {
                 lastname
                 address
                 zip
-                country
+                city
                 tel
                 email
             }

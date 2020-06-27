@@ -40,7 +40,7 @@ export default class NodeMailer {
         return `
             <div>
                 <h1>Bienvenue sur Pizza GO </h1>
-                <p>Avant d'utiliser votre compte veuillez l'activer en cliquant <a href="http://localhost:3000/api/v1/user/activateAccount/${token}">ici</a></p>
+                <p>Avant d'utiliser votre compte veuillez l'activer en cliquant <a href="http://localhost:3000/activateAccount?token=${token}">ici</a></p>
             </div>
         `
     }

@@ -98,7 +98,7 @@ adminRouteUser.route('/update/:id')
                     lastname: req.body.lastname,
                     address: req.body.address,
                     zip: req.body.zip,
-                    country: req.body.country,
+                    city: req.body.city,
                     tel: req.body.tel
                 }
             };
@@ -122,7 +122,7 @@ adminRouteUser.route('/updateCurrentUser')
             lastname: req.body.lastname,
             address: req.body.address,
             zip: req.body.zip,
-            country: req.body.country,
+            city: req.body.city,
             tel: req.body.tel
         };
 
@@ -142,7 +142,7 @@ anonymeRouteUser.route('/add')
                     zip: req.body.zip,
                     email: req.body.email,
                     firstname: req.body.firstname,
-                    country: req.body.country,
+                    city: req.body.city,
                     lastname: req.body.lastname,
                     address: req.body.address,
                     password: checkPass

@@ -380,7 +380,9 @@ export type DessertOrderByInput =
   | "price_ASC"
   | "price_DESC"
   | "name_ASC"
-  | "name_DESC";
+  | "name_DESC"
+  | "img_ASC"
+  | "img_DESC";
 
 export type DrinkOrderByInput =
   | "id_ASC"
@@ -390,7 +392,9 @@ export type DrinkOrderByInput =
   | "name_ASC"
   | "name_DESC"
   | "oz_ASC"
-  | "oz_DESC";
+  | "oz_DESC"
+  | "img_ASC"
+  | "img_DESC";
 
 export type OrderOrderByInput =
   | "id_ASC"
@@ -409,6 +413,8 @@ export type PizzaOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "img_ASC"
+  | "img_DESC"
   | "composition_ASC"
   | "composition_DESC";
 
@@ -445,8 +451,8 @@ export type UserOrderByInput =
   | "address_DESC"
   | "zip_ASC"
   | "zip_DESC"
-  | "country_ASC"
-  | "country_DESC"
+  | "city_ASC"
+  | "city_DESC"
   | "tel_ASC"
   | "tel_DESC"
   | "email_ASC"
@@ -528,6 +534,7 @@ export interface SizeCreateInput {
 export interface DessertUpdateManyMutationInput {
   price?: Maybe<Float>;
   name?: Maybe<String>;
+  img?: Maybe<String>;
 }
 
 export interface SizeCreateOneInput {
@@ -565,6 +572,7 @@ export interface PromoSubscriptionWhereInput {
 export interface PizzaCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
+  img: String;
   composition: Json;
   category?: Maybe<CategoryCreateOneInput>;
   size?: Maybe<SizeCreateOneInput>;
@@ -640,6 +648,20 @@ export interface DrinkWhereInput {
   oz_lte?: Maybe<Float>;
   oz_gt?: Maybe<Float>;
   oz_gte?: Maybe<Float>;
+  img?: Maybe<String>;
+  img_not?: Maybe<String>;
+  img_in?: Maybe<String[] | String>;
+  img_not_in?: Maybe<String[] | String>;
+  img_lt?: Maybe<String>;
+  img_lte?: Maybe<String>;
+  img_gt?: Maybe<String>;
+  img_gte?: Maybe<String>;
+  img_contains?: Maybe<String>;
+  img_not_contains?: Maybe<String>;
+  img_starts_with?: Maybe<String>;
+  img_not_starts_with?: Maybe<String>;
+  img_ends_with?: Maybe<String>;
+  img_not_ends_with?: Maybe<String>;
   AND?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
   OR?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
   NOT?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
@@ -655,7 +677,7 @@ export interface UserUpdateManyMutationInput {
   lastname?: Maybe<String>;
   address?: Maybe<String>;
   zip?: Maybe<Int>;
-  country?: Maybe<String>;
+  city?: Maybe<String>;
   tel?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
@@ -806,20 +828,20 @@ export interface UserWhereInput {
   zip_lte?: Maybe<Int>;
   zip_gt?: Maybe<Int>;
   zip_gte?: Maybe<Int>;
-  country?: Maybe<String>;
-  country_not?: Maybe<String>;
-  country_in?: Maybe<String[] | String>;
-  country_not_in?: Maybe<String[] | String>;
-  country_lt?: Maybe<String>;
-  country_lte?: Maybe<String>;
-  country_gt?: Maybe<String>;
-  country_gte?: Maybe<String>;
-  country_contains?: Maybe<String>;
-  country_not_contains?: Maybe<String>;
-  country_starts_with?: Maybe<String>;
-  country_not_starts_with?: Maybe<String>;
-  country_ends_with?: Maybe<String>;
-  country_not_ends_with?: Maybe<String>;
+  city?: Maybe<String>;
+  city_not?: Maybe<String>;
+  city_in?: Maybe<String[] | String>;
+  city_not_in?: Maybe<String[] | String>;
+  city_lt?: Maybe<String>;
+  city_lte?: Maybe<String>;
+  city_gt?: Maybe<String>;
+  city_gte?: Maybe<String>;
+  city_contains?: Maybe<String>;
+  city_not_contains?: Maybe<String>;
+  city_starts_with?: Maybe<String>;
+  city_not_starts_with?: Maybe<String>;
+  city_ends_with?: Maybe<String>;
+  city_not_ends_with?: Maybe<String>;
   tel?: Maybe<String>;
   tel_not?: Maybe<String>;
   tel_in?: Maybe<String[] | String>;
@@ -909,7 +931,7 @@ export interface UserUpdateDataInput {
   lastname?: Maybe<String>;
   address?: Maybe<String>;
   zip?: Maybe<Int>;
-  country?: Maybe<String>;
+  city?: Maybe<String>;
   tel?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
@@ -942,6 +964,7 @@ export interface UserUpdateOneInput {
 
 export interface PizzaUpdateInput {
   name?: Maybe<String>;
+  img?: Maybe<String>;
   composition?: Maybe<Json>;
   category?: Maybe<CategoryUpdateOneInput>;
   size?: Maybe<SizeUpdateOneInput>;
@@ -1004,7 +1027,7 @@ export interface UserUpdateInput {
   lastname?: Maybe<String>;
   address?: Maybe<String>;
   zip?: Maybe<Int>;
-  country?: Maybe<String>;
+  city?: Maybe<String>;
   tel?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
@@ -1101,7 +1124,7 @@ export interface UserCreateInput {
   lastname: String;
   address: String;
   zip: Int;
-  country: String;
+  city: String;
   tel: String;
   email: String;
   password: String;
@@ -1147,6 +1170,20 @@ export interface DessertWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  img?: Maybe<String>;
+  img_not?: Maybe<String>;
+  img_in?: Maybe<String[] | String>;
+  img_not_in?: Maybe<String[] | String>;
+  img_lt?: Maybe<String>;
+  img_lte?: Maybe<String>;
+  img_gt?: Maybe<String>;
+  img_gte?: Maybe<String>;
+  img_contains?: Maybe<String>;
+  img_not_contains?: Maybe<String>;
+  img_starts_with?: Maybe<String>;
+  img_not_starts_with?: Maybe<String>;
+  img_ends_with?: Maybe<String>;
+  img_not_ends_with?: Maybe<String>;
   AND?: Maybe<DessertWhereInput[] | DessertWhereInput>;
   OR?: Maybe<DessertWhereInput[] | DessertWhereInput>;
   NOT?: Maybe<DessertWhereInput[] | DessertWhereInput>;
@@ -1176,16 +1213,19 @@ export interface DessertCreateInput {
   id?: Maybe<ID_Input>;
   price: Float;
   name: String;
+  img: String;
 }
 
 export interface PizzaUpdateManyMutationInput {
   name?: Maybe<String>;
+  img?: Maybe<String>;
   composition?: Maybe<Json>;
 }
 
 export interface DessertUpdateInput {
   price?: Maybe<Float>;
   name?: Maybe<String>;
+  img?: Maybe<String>;
 }
 
 export interface CategoryUpdateDataInput {
@@ -1196,12 +1236,14 @@ export interface DrinkUpdateManyMutationInput {
   price?: Maybe<Float>;
   name?: Maybe<String>;
   oz?: Maybe<Float>;
+  img?: Maybe<String>;
 }
 
 export interface DrinkUpdateInput {
   price?: Maybe<Float>;
   name?: Maybe<String>;
   oz?: Maybe<Float>;
+  img?: Maybe<String>;
 }
 
 export interface DrinkCreateInput {
@@ -1209,6 +1251,7 @@ export interface DrinkCreateInput {
   price: Float;
   name: String;
   oz: Float;
+  img: String;
 }
 
 export type DessertWhereUniqueInput = AtLeastOne<{
@@ -1244,6 +1287,20 @@ export interface PizzaWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  img?: Maybe<String>;
+  img_not?: Maybe<String>;
+  img_in?: Maybe<String[] | String>;
+  img_not_in?: Maybe<String[] | String>;
+  img_lt?: Maybe<String>;
+  img_lte?: Maybe<String>;
+  img_gt?: Maybe<String>;
+  img_gte?: Maybe<String>;
+  img_contains?: Maybe<String>;
+  img_not_contains?: Maybe<String>;
+  img_starts_with?: Maybe<String>;
+  img_not_starts_with?: Maybe<String>;
+  img_ends_with?: Maybe<String>;
+  img_not_ends_with?: Maybe<String>;
   category?: Maybe<CategoryWhereInput>;
   size?: Maybe<SizeWhereInput>;
   AND?: Maybe<PizzaWhereInput[] | PizzaWhereInput>;
@@ -1318,7 +1375,7 @@ export interface UserPreviousValues {
   lastname: String;
   address: String;
   zip: Int;
-  country: String;
+  city: String;
   tel: String;
   email: String;
   password: String;
@@ -1335,7 +1392,7 @@ export interface UserPreviousValuesPromise
   lastname: () => Promise<String>;
   address: () => Promise<String>;
   zip: () => Promise<Int>;
-  country: () => Promise<String>;
+  city: () => Promise<String>;
   tel: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
@@ -1352,7 +1409,7 @@ export interface UserPreviousValuesSubscription
   lastname: () => Promise<AsyncIterator<String>>;
   address: () => Promise<AsyncIterator<String>>;
   zip: () => Promise<AsyncIterator<Int>>;
-  country: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
   tel: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
@@ -1425,7 +1482,7 @@ export interface User {
   lastname: String;
   address: String;
   zip: Int;
-  country: String;
+  city: String;
   tel: String;
   email: String;
   password: String;
@@ -1440,7 +1497,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   lastname: () => Promise<String>;
   address: () => Promise<String>;
   zip: () => Promise<Int>;
-  country: () => Promise<String>;
+  city: () => Promise<String>;
   tel: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
@@ -1457,7 +1514,7 @@ export interface UserSubscription
   lastname: () => Promise<AsyncIterator<String>>;
   address: () => Promise<AsyncIterator<String>>;
   zip: () => Promise<AsyncIterator<Int>>;
-  country: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
   tel: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
@@ -1474,7 +1531,7 @@ export interface UserNullablePromise
   lastname: () => Promise<String>;
   address: () => Promise<String>;
   zip: () => Promise<Int>;
-  country: () => Promise<String>;
+  city: () => Promise<String>;
   tel: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
@@ -1720,12 +1777,14 @@ export interface Dessert {
   id: ID_Output;
   price: Float;
   name: String;
+  img: String;
 }
 
 export interface DessertPromise extends Promise<Dessert>, Fragmentable {
   id: () => Promise<ID_Output>;
   price: () => Promise<Float>;
   name: () => Promise<String>;
+  img: () => Promise<String>;
 }
 
 export interface DessertSubscription
@@ -1734,6 +1793,7 @@ export interface DessertSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   price: () => Promise<AsyncIterator<Float>>;
   name: () => Promise<AsyncIterator<String>>;
+  img: () => Promise<AsyncIterator<String>>;
 }
 
 export interface DessertNullablePromise
@@ -1742,6 +1802,7 @@ export interface DessertNullablePromise
   id: () => Promise<ID_Output>;
   price: () => Promise<Float>;
   name: () => Promise<String>;
+  img: () => Promise<String>;
 }
 
 export interface Category {
@@ -1853,12 +1914,14 @@ export interface CategoryPreviousValuesSubscription
 export interface Pizza {
   id: ID_Output;
   name: String;
+  img: String;
   composition: Json;
 }
 
 export interface PizzaPromise extends Promise<Pizza>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  img: () => Promise<String>;
   composition: () => Promise<Json>;
   category: <T = CategoryPromise>() => T;
   size: <T = SizePromise>() => T;
@@ -1869,6 +1932,7 @@ export interface PizzaSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  img: () => Promise<AsyncIterator<String>>;
   composition: () => Promise<AsyncIterator<Json>>;
   category: <T = CategorySubscription>() => T;
   size: <T = SizeSubscription>() => T;
@@ -1879,6 +1943,7 @@ export interface PizzaNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  img: () => Promise<String>;
   composition: () => Promise<Json>;
   category: <T = CategoryPromise>() => T;
   size: <T = SizePromise>() => T;
@@ -1889,6 +1954,7 @@ export interface Drink {
   price: Float;
   name: String;
   oz: Float;
+  img: String;
 }
 
 export interface DrinkPromise extends Promise<Drink>, Fragmentable {
@@ -1896,6 +1962,7 @@ export interface DrinkPromise extends Promise<Drink>, Fragmentable {
   price: () => Promise<Float>;
   name: () => Promise<String>;
   oz: () => Promise<Float>;
+  img: () => Promise<String>;
 }
 
 export interface DrinkSubscription
@@ -1905,6 +1972,7 @@ export interface DrinkSubscription
   price: () => Promise<AsyncIterator<Float>>;
   name: () => Promise<AsyncIterator<String>>;
   oz: () => Promise<AsyncIterator<Float>>;
+  img: () => Promise<AsyncIterator<String>>;
 }
 
 export interface DrinkNullablePromise
@@ -1914,6 +1982,7 @@ export interface DrinkNullablePromise
   price: () => Promise<Float>;
   name: () => Promise<String>;
   oz: () => Promise<Float>;
+  img: () => Promise<String>;
 }
 
 export interface OrderEdge {
@@ -1985,6 +2054,7 @@ export interface DessertPreviousValues {
   id: ID_Output;
   price: Float;
   name: String;
+  img: String;
 }
 
 export interface DessertPreviousValuesPromise
@@ -1993,6 +2063,7 @@ export interface DessertPreviousValuesPromise
   id: () => Promise<ID_Output>;
   price: () => Promise<Float>;
   name: () => Promise<String>;
+  img: () => Promise<String>;
 }
 
 export interface DessertPreviousValuesSubscription
@@ -2001,6 +2072,7 @@ export interface DessertPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   price: () => Promise<AsyncIterator<Float>>;
   name: () => Promise<AsyncIterator<String>>;
+  img: () => Promise<AsyncIterator<String>>;
 }
 
 export interface SizePreviousValues {
@@ -2112,6 +2184,7 @@ export interface DrinkPreviousValues {
   price: Float;
   name: String;
   oz: Float;
+  img: String;
 }
 
 export interface DrinkPreviousValuesPromise
@@ -2121,6 +2194,7 @@ export interface DrinkPreviousValuesPromise
   price: () => Promise<Float>;
   name: () => Promise<String>;
   oz: () => Promise<Float>;
+  img: () => Promise<String>;
 }
 
 export interface DrinkPreviousValuesSubscription
@@ -2130,6 +2204,7 @@ export interface DrinkPreviousValuesSubscription
   price: () => Promise<AsyncIterator<Float>>;
   name: () => Promise<AsyncIterator<String>>;
   oz: () => Promise<AsyncIterator<Float>>;
+  img: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregatePizza {
@@ -2327,6 +2402,7 @@ export interface CategoryEdgeSubscription
 export interface PizzaPreviousValues {
   id: ID_Output;
   name: String;
+  img: String;
   composition: Json;
 }
 
@@ -2335,6 +2411,7 @@ export interface PizzaPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  img: () => Promise<String>;
   composition: () => Promise<Json>;
 }
 
@@ -2343,6 +2420,7 @@ export interface PizzaPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  img: () => Promise<AsyncIterator<String>>;
   composition: () => Promise<AsyncIterator<Json>>;
 }
 

@@ -50,7 +50,7 @@ class UserController {
                     lastname: user.data.lastname,
                     address: user.data.address,
                     zip: user.data.zip,
-                    country: user.data.country,
+                    city: user.data.city,
                     tel: user.data.tel,
                     email: user.data.email,
                     password: crypt,
@@ -81,7 +81,7 @@ class UserController {
                     lastname: user.data.lastname,
                     address: "admin user",
                     zip: 99999,
-                    country: "admin user",
+                    city: "admin user",
                     tel: user.data.tel,
                     email: user.data.email,
                     password:crypt,
@@ -121,7 +121,7 @@ class UserController {
 
     updateCurrentUser(objectUser) {
         return new Promise (async next => {
-            const {id, firstname, lastname, address, zip, country, tel } = objectUser;
+            const {id, firstname, lastname, address, zip, city, tel } = objectUser;
             const objectToUpdate = {
                 where: {id: id},
                 data : {
@@ -129,7 +129,7 @@ class UserController {
                     lastname : lastname,
                     address : address,
                     zip : zip,
-                    country : country,
+                    city : city,
                     tel : tel
                 }
             };
@@ -164,7 +164,8 @@ class UserController {
     activateAccount(token) {
         return new Promise(async next => {
             const getUser = await prisma.$graphql(getUserByActivateToken(token));
-            if(getUser){
+            console.log(getUser)
+            if(getUser.users.length > 0){
                 const deleteActivateToken = await prisma.updateUser({where: {id: getUser.users[0].id}, data: {tokenActivate: ""}});
                 
                 const email = new NodeMailer({host: process.env.HOST, port: process.env.PORT, secure: process.env.SECURE, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});

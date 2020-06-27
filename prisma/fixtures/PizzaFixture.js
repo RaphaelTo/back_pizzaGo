@@ -11,12 +11,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7jk000q0777hqivubjr'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4mn000g07770nk2mztu'
+                id: 'ckbw8yrle004v0759ut138hav'
             }
         }
     })
@@ -30,12 +30,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7jk000q0777hqivubjr'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4mn000g07770nk2mztu'
+                id: 'ckbw8yrmd00500759slwn3g4r'
             }
         }
     })
@@ -49,12 +49,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7jk000q0777hqivubjr'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4mn000g07770nk2mztu'
+                id: 'ckbw8yrmd00500759slwn3g4r'
             }
         }
     })
@@ -68,12 +68,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7jk000q0777hqivubjr'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4mn000g07770nk2mztu'
+                id: 'ckbw8yrmd00500759slwn3g4r'
             }
         }
     })
@@ -87,12 +87,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7jk000q0777hqivubjr'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4mn000g07770nk2mztu'
+                id: 'ckbw8yrle004v0759ut138hav'
             }
         }
     })
@@ -107,12 +107,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7no00100777z3j9whgx'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4po000l07778y7y2wrg'
+                id: 'ckbw8yrle004v0759ut138hav'
             }
         }
     })
@@ -127,12 +127,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7no00100777z3j9whgx'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4po000l07778y7y2wrg'
+                id: 'ckbw8yrle004v0759ut138hav'
             }
         }
     })
@@ -147,12 +147,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7no00100777z3j9whgx'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4po000l07778y7y2wrg'
+                id: 'ckbw8yrle004v0759ut138hav'
             }
         }
     })
@@ -167,12 +167,12 @@ async function pizzaFixture() {
         },
         size:{
             connect: {
-                id: 'ckbtkq7no00100777z3j9whgx'
+                id: 'ckbw8yy2l005p0759t936p4dd'
             }
         },
         category: {
             connect: {
-                id: 'ckbtkq4po000l07778y7y2wrg'
+                id: 'ckbw8yrle004v0759ut138hav'
             }
         }
     })
