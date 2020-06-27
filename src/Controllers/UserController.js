@@ -185,7 +185,8 @@ class UserController {
             const checkEmail = await this.existAccount(email);
 
             if(checkEmail){
-                const lessCharSpecial = checkEmail.result.users[0].password.replace("/", "");
+                const lessCharSpecial = checkEmail.result.users[0].password.split('/').join('');
+                console.log(lessCharSpecial);
                 await prisma.updateUser({where: {id: checkEmail.result.users[0].id}, data:{tokenResetPassword: lessCharSpecial}});
                 
                 const email = new NodeMailer({host: process.env.HOST, port: process.env.PORT, secure: process.env.SECURE, auth: {email: process.env.MAIL, password: process.env.PWD_MAIL}});
