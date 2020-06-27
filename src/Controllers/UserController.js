@@ -50,7 +50,7 @@ class UserController {
                     lastname: user.data.lastname,
                     address: user.data.address,
                     zip: user.data.zip,
-                    country: user.data.country,
+                    city: user.data.city,
                     tel: user.data.tel,
                     email: user.data.email,
                     password: crypt,
@@ -81,7 +81,7 @@ class UserController {
                     lastname: user.data.lastname,
                     address: "admin user",
                     zip: 99999,
-                    country: "admin user",
+                    city: "admin user",
                     tel: user.data.tel,
                     email: user.data.email,
                     password:crypt,
@@ -121,7 +121,7 @@ class UserController {
 
     updateCurrentUser(objectUser) {
         return new Promise (async next => {
-            const {id, firstname, lastname, address, zip, country, tel } = objectUser;
+            const {id, firstname, lastname, address, zip, city, tel } = objectUser;
             const objectToUpdate = {
                 where: {id: id},
                 data : {
@@ -129,7 +129,7 @@ class UserController {
                     lastname : lastname,
                     address : address,
                     zip : zip,
-                    country : country,
+                    city : city,
                     tel : tel
                 }
             };

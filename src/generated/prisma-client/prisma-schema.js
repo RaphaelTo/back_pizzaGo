@@ -165,6 +165,7 @@ type Dessert {
   id: ID!
   price: Float!
   name: String!
+  img: String!
 }
 
 type DessertConnection {
@@ -177,6 +178,7 @@ input DessertCreateInput {
   id: ID
   price: Float!
   name: String!
+  img: String!
 }
 
 type DessertEdge {
@@ -191,12 +193,15 @@ enum DessertOrderByInput {
   price_DESC
   name_ASC
   name_DESC
+  img_ASC
+  img_DESC
 }
 
 type DessertPreviousValues {
   id: ID!
   price: Float!
   name: String!
+  img: String!
 }
 
 type DessertSubscriptionPayload {
@@ -220,11 +225,13 @@ input DessertSubscriptionWhereInput {
 input DessertUpdateInput {
   price: Float
   name: String
+  img: String
 }
 
 input DessertUpdateManyMutationInput {
   price: Float
   name: String
+  img: String
 }
 
 input DessertWhereInput {
@@ -264,6 +271,20 @@ input DessertWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  img: String
+  img_not: String
+  img_in: [String!]
+  img_not_in: [String!]
+  img_lt: String
+  img_lte: String
+  img_gt: String
+  img_gte: String
+  img_contains: String
+  img_not_contains: String
+  img_starts_with: String
+  img_not_starts_with: String
+  img_ends_with: String
+  img_not_ends_with: String
   AND: [DessertWhereInput!]
   OR: [DessertWhereInput!]
   NOT: [DessertWhereInput!]
@@ -278,6 +299,7 @@ type Drink {
   price: Float!
   name: String!
   oz: Float!
+  img: String!
 }
 
 type DrinkConnection {
@@ -291,6 +313,7 @@ input DrinkCreateInput {
   price: Float!
   name: String!
   oz: Float!
+  img: String!
 }
 
 type DrinkEdge {
@@ -307,6 +330,8 @@ enum DrinkOrderByInput {
   name_DESC
   oz_ASC
   oz_DESC
+  img_ASC
+  img_DESC
 }
 
 type DrinkPreviousValues {
@@ -314,6 +339,7 @@ type DrinkPreviousValues {
   price: Float!
   name: String!
   oz: Float!
+  img: String!
 }
 
 type DrinkSubscriptionPayload {
@@ -338,12 +364,14 @@ input DrinkUpdateInput {
   price: Float
   name: String
   oz: Float
+  img: String
 }
 
 input DrinkUpdateManyMutationInput {
   price: Float
   name: String
   oz: Float
+  img: String
 }
 
 input DrinkWhereInput {
@@ -391,6 +419,20 @@ input DrinkWhereInput {
   oz_lte: Float
   oz_gt: Float
   oz_gte: Float
+  img: String
+  img_not: String
+  img_in: [String!]
+  img_not_in: [String!]
+  img_lt: String
+  img_lte: String
+  img_gt: String
+  img_gte: String
+  img_contains: String
+  img_not_contains: String
+  img_starts_with: String
+  img_not_starts_with: String
+  img_ends_with: String
+  img_not_ends_with: String
   AND: [DrinkWhereInput!]
   OR: [DrinkWhereInput!]
   NOT: [DrinkWhereInput!]
@@ -608,6 +650,7 @@ type PageInfo {
 type Pizza {
   id: ID!
   name: String!
+  img: String!
   composition: Json!
   category: Category
   size: Size
@@ -622,6 +665,7 @@ type PizzaConnection {
 input PizzaCreateInput {
   id: ID
   name: String!
+  img: String!
   composition: Json!
   category: CategoryCreateOneInput
   size: SizeCreateOneInput
@@ -637,6 +681,8 @@ enum PizzaOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  img_ASC
+  img_DESC
   composition_ASC
   composition_DESC
 }
@@ -644,6 +690,7 @@ enum PizzaOrderByInput {
 type PizzaPreviousValues {
   id: ID!
   name: String!
+  img: String!
   composition: Json!
 }
 
@@ -667,6 +714,7 @@ input PizzaSubscriptionWhereInput {
 
 input PizzaUpdateInput {
   name: String
+  img: String
   composition: Json
   category: CategoryUpdateOneInput
   size: SizeUpdateOneInput
@@ -674,6 +722,7 @@ input PizzaUpdateInput {
 
 input PizzaUpdateManyMutationInput {
   name: String
+  img: String
   composition: Json
 }
 
@@ -706,6 +755,20 @@ input PizzaWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  img: String
+  img_not: String
+  img_in: [String!]
+  img_not_in: [String!]
+  img_lt: String
+  img_lte: String
+  img_gt: String
+  img_gte: String
+  img_contains: String
+  img_not_contains: String
+  img_starts_with: String
+  img_not_starts_with: String
+  img_ends_with: String
+  img_not_ends_with: String
   category: CategoryWhereInput
   size: SizeWhereInput
   AND: [PizzaWhereInput!]
@@ -1034,7 +1097,7 @@ type User {
   lastname: String!
   address: String!
   zip: Int!
-  country: String!
+  city: String!
   tel: String!
   email: String!
   password: String!
@@ -1055,7 +1118,7 @@ input UserCreateInput {
   lastname: String!
   address: String!
   zip: Int!
-  country: String!
+  city: String!
   tel: String!
   email: String!
   password: String!
@@ -1089,8 +1152,8 @@ enum UserOrderByInput {
   address_DESC
   zip_ASC
   zip_DESC
-  country_ASC
-  country_DESC
+  city_ASC
+  city_DESC
   tel_ASC
   tel_DESC
   email_ASC
@@ -1109,7 +1172,7 @@ type UserPreviousValues {
   lastname: String!
   address: String!
   zip: Int!
-  country: String!
+  city: String!
   tel: String!
   email: String!
   password: String!
@@ -1141,7 +1204,7 @@ input UserUpdateDataInput {
   lastname: String
   address: String
   zip: Int
-  country: String
+  city: String
   tel: String
   email: String
   password: String
@@ -1155,7 +1218,7 @@ input UserUpdateInput {
   lastname: String
   address: String
   zip: Int
-  country: String
+  city: String
   tel: String
   email: String
   password: String
@@ -1169,7 +1232,7 @@ input UserUpdateManyMutationInput {
   lastname: String
   address: String
   zip: Int
-  country: String
+  city: String
   tel: String
   email: String
   password: String
@@ -1261,20 +1324,20 @@ input UserWhereInput {
   zip_lte: Int
   zip_gt: Int
   zip_gte: Int
-  country: String
-  country_not: String
-  country_in: [String!]
-  country_not_in: [String!]
-  country_lt: String
-  country_lte: String
-  country_gt: String
-  country_gte: String
-  country_contains: String
-  country_not_contains: String
-  country_starts_with: String
-  country_not_starts_with: String
-  country_ends_with: String
-  country_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
   tel: String
   tel_not: String
   tel_in: [String!]

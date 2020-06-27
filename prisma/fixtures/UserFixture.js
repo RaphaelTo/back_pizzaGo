@@ -6,7 +6,7 @@ async function userFixture() {
         lastname: 'Mouloude',
         address: '18 Jean pascal du borris',
         zip: 93400,
-        country: 'Saint-Ouen',
+        city: 'Saint-Ouen',
         tel: '0825411940',
         email: 'Rafik_mlde@ipssi.com',
         password: 'Azerty99-',
