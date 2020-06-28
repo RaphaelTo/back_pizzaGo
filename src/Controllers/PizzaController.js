@@ -38,7 +38,7 @@ class PizzaController {
 
     createPizza(pizza){
         return new Promise(async (next) => {
-            if(pizza.name && pizza.size && pizza.composition && pizza.category) {
+            if(pizza.name && pizza.composition && pizza.category) {
                 const addPizza = await prisma.createPizza(pizza);
                 next(success(addPizza));
             }else {
@@ -69,9 +69,6 @@ class PizzaController {
                     data:{ 
                         name: pizzaObject.name,
                         composition: pizzaObject.composition,
-                        size: {
-                            connect: {id : pizzaObject.sizeId ? pizzaObject.sizeId : check.result.size.id}
-                        },
                         category: {
                             connect: {id : pizzaObject.categoryId ? pizzaObject.categoryId : check.result.category.id}
                         }

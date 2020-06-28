@@ -24,7 +24,7 @@ anonymeRoutePizza.route('/category/:cat')
 
 adminRoutePizza.route('/add')
     .post(async (req, res) => {
-        if(!req.body.categoryId && !req.body.sizeId) res.json(error('Error, empty value categoryId or sizeId'));
+        if(!req.body.categoryId) res.json(error('Error, empty value categoryId'));
 
         const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
         const { role } = decode.payload;
@@ -32,11 +32,6 @@ adminRoutePizza.route('/add')
         const pizza = {
             name: req.body.name,
             composition: req.body.composition,
-            size: {
-                connect : {
-                   id: req.body.sizeId
-                }
-            },
             category: {
                 connect: {
                     id: req.body.categoryId
@@ -76,7 +71,6 @@ adminRoutePizza.route('/update/:id')
             const updateObject = {
                 id: req.params.id,
                 composition: req.body.composition,
-                sizeId : req.body.sizeId,
                 categoryId: req.body.categoryId
             }
             

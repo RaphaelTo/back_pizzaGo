@@ -6,5 +6,4 @@ type Pizza {
     img: String!
     composition: Json!
     category: Category @relation(link: INLINE)
-    size: Size @relation(link: INLINE)
 }
