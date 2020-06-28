@@ -4,11 +4,6 @@ export const getPizzaCatIng = `
         name
         composition
         img
-        size{
-            id
-            name
-            price
-        }
         category {
             id
             name
@@ -24,11 +19,6 @@ export const getPizzaByCat = (name) => {
                 name
                 composition
                 img
-                size{
-                    id
-                    name
-                    price
-                }
                 category {
                     id
                     name
