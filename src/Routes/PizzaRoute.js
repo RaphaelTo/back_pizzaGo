@@ -32,6 +32,7 @@ adminRoutePizza.route('/add')
         const pizza = {
             name: req.body.name,
             composition: req.body.composition,
+            img: req.body.img,
             category: {
                 connect: {
                     id: req.body.categoryId
