@@ -1,9 +1,28 @@
 import { prisma } from '../generated/prisma-client';
 import { success, error } from '../returnFunc';
 import { getOrderWithUser, getOrderByUser } from '../Queries/GraphQLQueries';
+import Stripe from 'stripe';
+
+const stripe = Stripe('sk_test_FFo2d2NIa2uOtzD2k88dDrYm00iLED5prj');
 
 
 class OrderController {
+
+    proccessPaiement(charge) {
+        stripe.charges.create(
+            {
+              amount: charge.amount,
+              currency: "eur",
+              source: "tok_mastercard",
+              description: "Commande pizza",
+              customer: charge.customer
+            },
+            function(err, charge) {
+              // asynchronously called
+            }
+          );
+    }
+
     async checkId(param) {
         let check  = false;
         await this.getOrderById(param).then(resp => {
@@ -59,6 +78,7 @@ class OrderController {
         return new Promise(async (next) => {
             if (param.price  && param.status && param.user && param.content && param.promo) {
                 const Orders = await prisma.createOrder(param);
+                this.proccessPaiement(param.charge)
                 next(success(Orders));
             } else {
                 next(success('Empty fields'));
