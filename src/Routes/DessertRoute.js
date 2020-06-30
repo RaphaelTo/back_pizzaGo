@@ -46,7 +46,8 @@ adminRouteDessert.route('/update')
             where: { id: req.body.id },
             data: {
                 price: req.body.price,
-                name: req.body.name
+                name: req.body.name,
+                img: req.body.img
             }
         }
         const Desserts = await Dessert.updateDessert(param);

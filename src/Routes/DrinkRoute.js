@@ -47,7 +47,8 @@ adminRouteDrink.route('/update')
             data: {
                 price: req.body.price,
                 name: req.body.name,
-                oz: req.body.oz
+                oz: req.body.oz,
+                img: req.body.img
             }
         }
         const Drinks = await Drink.updateDrink(param);
