@@ -24,7 +24,8 @@ adminRouteDessert.route('/add')
     .post(async (req, res) => {
         const param = {
             price: req.body.price,
-            name: req.body.name
+            name: req.body.name,
+            img: req.body.img
         };
         const Desserts = await Dessert.addDessert(param);
         res.json(Desserts);
