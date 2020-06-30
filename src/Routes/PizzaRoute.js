@@ -63,18 +63,21 @@ adminRoutePizza.route('/delete/:id')
         }
     })
 
-adminRoutePizza.route('/update/:id')
+adminRoutePizza.route('/update')
     .put(async (req, res) => {
         const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
         const { role } = decode.payload;
-
-        if (role.indexOf('ROLE_ADMIN') !== -1){
+        
+        if (role.indexOf('ROLE_ADMIN') != -1){
             const updateObject = {
-                id: req.params.id,
+                id: req.body.id,
+                name: req.body.name,
                 composition: req.body.composition,
                 categoryId: req.body.categoryId,
                 img: req.body.img
             }
+            console.log(req.body.id)
+            console.log(updateObject);
             
             const updatePizza = await PizzaController.updatePizzaById(updateObject);
             res.json(updatePizza);
