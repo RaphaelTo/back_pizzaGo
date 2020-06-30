@@ -72,7 +72,8 @@ adminRoutePizza.route('/update/:id')
             const updateObject = {
                 id: req.params.id,
                 composition: req.body.composition,
-                categoryId: req.body.categoryId
+                categoryId: req.body.categoryId,
+                img: req.body.img
             }
             
             const updatePizza = await PizzaController.updatePizzaById(updateObject);
