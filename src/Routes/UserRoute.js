@@ -10,20 +10,20 @@ export const adminRouteUser = express.Router();
 
 adminRouteUser.route('/')
     .get(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
         const { role } = decode.payload;
-        
-        if(role.indexOf('ROLE_ADMIN') !== -1){
+
+        if (role.indexOf('ROLE_ADMIN') !== -1) {
             const Users = await User.getAllUser();
             res.json(Users);
-        }else{
+        } else {
             res.json(error("You are not an admin"));
         }
     })
 
 adminRouteUser.route('/currentUser')
     .get(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
         const { email } = decode.payload;
 
         const getCurrentUser = await User.currentUser(email)
@@ -32,28 +32,28 @@ adminRouteUser.route('/currentUser')
 
 adminRouteUser.route('/:id')
     .get(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
         const { role } = decode.payload;
-        
-        if(role.indexOf('ROLE_ADMIN') !== -1){
+
+        if (role.indexOf('ROLE_ADMIN') !== -1) {
             const user = await User.getUserById(req.params.id);
             res.json(user);
-        }else{
+        } else {
             res.json(error("You are not an admin"));
         }
     })
 
 adminRouteUser.route('/add')
     .post(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
         const { role } = decode.payload;
-        
-        if(role.indexOf('ROLE_ADMIN') !== -1){
+
+        if (role.indexOf('ROLE_ADMIN') !== -1) {
             const checkPass = req.body.firstPassword === req.body.secondPassword ? req.body.firstPassword : false;
-            
-            if(checkPass !== false) {
+
+            if (checkPass !== false) {
                 const param = {
-                    data : {
+                    data: {
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
                         tel: req.body.tel,
@@ -64,36 +64,36 @@ adminRouteUser.route('/add')
 
                 const addUser = await User.createAdminUser(param);
                 res.json(addUser);
-            }else {
+            } else {
                 res.json(error('Error, not the same password'));
-            } 
-        }else {
+            }
+        } else {
             res.json(error('Error, you are not admin'));
         }
     })
-    
+
 adminRouteUser.route('/delete/:id')
     .delete(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
         const { role } = decode.payload;
-        
-        if(role.indexOf('ROLE_ADMIN') !== -1){
+
+        if (role.indexOf('ROLE_ADMIN') !== -1) {
             const user = await User.deleteUser(req.params.id);
             res.json(user);
-        }else{
+        } else {
             res.json(error("You are not an admin"));
         }
     })
 
 adminRouteUser.route('/update/:id')
     .put(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
         const { role } = decode.payload;
-        
-        if(role.indexOf('ROLE_ADMIN') !== -1){
+
+        if (role.indexOf('ROLE_ADMIN') !== -1) {
             const objectUser = {
-                where : {id: req.params.id},
-                data : {
+                where: { id: req.params.id },
+                data: {
                     firstname: req.body.firstname,
                     lastname: req.body.lastname,
                     address: req.body.address,
@@ -113,11 +113,11 @@ adminRouteUser.route('/update/:id')
 
 adminRouteUser.route('/updateCurrentUser')
     .put(async (req, res) => {
-        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
         const { id } = decode.payload;
-        
+
         const updateUser = {
-            id : id,
+            id: id,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             address: req.body.address,
@@ -130,14 +130,14 @@ adminRouteUser.route('/updateCurrentUser')
         res.json(currentUserUpdate);
     })
 
-  
+
 anonymeRouteUser.route('/add')
     .post(async (req, res) => {
         const checkPass = req.body.firstPassword === req.body.secondPassword ? req.body.firstPassword : false;
-        
-        if(checkPass !== false){
+
+        if (checkPass !== false) {
             const param = {
-                data : {
+                data: {
                     tel: req.body.tel,
                     zip: req.body.zip,
                     email: req.body.email,
@@ -160,7 +160,7 @@ anonymeRouteUser.route('/connection')
     .post(async (req, res) => {
         const param = {
             data: {
-                email : req.body.email,
+                email: req.body.email,
                 password: req.body.password,
             }
         }
@@ -182,8 +182,16 @@ anonymeRouteUser.route('/forgetPassword')
 anonymeRouteUser.route('/resetPassword/:token')
     .post(async (req, res) => {
         const newPassword = req.body.firstPassword === req.body.secondPassword ? req.body.firstPassword : res.json(error("Error not the same password"));
-        const objResetPassword = {tokenReset: req.params.token, pwd: newPassword};
-        
+        const objResetPassword = { tokenReset: req.params.token, pwd: newPassword };
+
         const changePasswordUser = await User.resetPassword(objResetPassword);
         res.json(changePasswordUser);
+    })
+
+anonymeRouteUser.route('/checkuser')
+    .get(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], { complete: true });
+        const { role } = decode.payload;
+
+        res.json(role);
     })
