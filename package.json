@@ -26,10 +26,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.13",
     "nodemailer": "^6.4.10",
+    "nodemon": "^2.0.4",
     "prisma-client-lib": "1.34.8",
     "stripe": "^8.67.0",
-    "validator": "^12.2.0",
-    "nodemon": "^1.18.3"
+    "validator": "^12.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
@@ -41,7 +41,6 @@
     "assert": "^2.0.0",
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.18.3"
+    "morgan": "^1.9.1"
   }
 }
