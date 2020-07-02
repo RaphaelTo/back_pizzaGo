@@ -9,10 +9,10 @@ export const getPizzaCatIng = `
             name
         }
     }
-`
+`;
 
 export const getPizzaByCat = (name) => {
-    return `
+  return `
         query {
             pizzas(where: {category : {name : "${name}"}}) {
                 id
@@ -25,21 +25,21 @@ export const getPizzaByCat = (name) => {
                 }
             }
         }
-    `
-} 
+    `;
+};
 
 export const getOnlyMailUser = (email) => {
-    return `
+  return `
         query {
             users(where : {email : "${email}"}){
                 email,
             }
         }
-    `
-}
+    `;
+};
 
 export const getUser = (email) => {
-    return `
+  return `
         query {
             users(where : {email : "${email}"}){
                 id
@@ -49,11 +49,11 @@ export const getUser = (email) => {
                 tokenActivate
             }
         }
-    `
-}
+    `;
+};
 
 export const getCurrentUser = (email) => {
-    return `
+  return `
         query {
             users(where : {email : "${email}"}){
                 id
@@ -66,11 +66,11 @@ export const getCurrentUser = (email) => {
                 email
             }
         }
-    `
-}
+    `;
+};
 
 export const getUserByActivateToken = (token) => {
-    return `
+  return `
         query {
             users(where: {tokenActivate: "${token}"}){
                 id
@@ -78,11 +78,11 @@ export const getUserByActivateToken = (token) => {
                 tokenActivate
             }
         }
-    `
-}
+    `;
+};
 
 export const getUserByResetToken = (token) => {
-    return `
+  return `
         query {
             users(where: {tokenResetPassword: "${token}"}){
                 id 
@@ -90,8 +90,8 @@ export const getUserByResetToken = (token) => {
                 tokenResetPassword
             }
         }
-    `
-}
+    `;
+};
 
 export const getOrderWithUser = `
     fragment getOrderWithUser on Order {
@@ -112,17 +112,17 @@ export const getOrderWithUser = `
             amount
         }
     }
-`
-
+`;
 
 export const getOrderByUser = (id) => {
-    return `
+  return `
         query {
             orders(where: {user : {id : "${id}"}}) {
                 id
                 price
                 date
                 status
+                content
                 promo {
                     id
                     name
@@ -130,11 +130,11 @@ export const getOrderByUser = (id) => {
                 }
             }
         }
-    `
-}
+    `;
+};
 
 export const getPromoByName = (name) => {
-    return `
+  return `
         query {
           promoes(where: {name : "${name}"}) {
             id
@@ -142,5 +142,5 @@ export const getPromoByName = (name) => {
             amount
           }
         }
-    `
-}
+    `;
+};
