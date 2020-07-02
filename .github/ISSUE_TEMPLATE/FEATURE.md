@@ -2,7 +2,7 @@
 name: 🚀 Feature Request 
 about: Use this template for feature request.
 title: "[DATE]: [FEATURE NAME]"
-labels: ":bug: bug"
+labels: ":rocket: Feature Request"
 assignees: iGhezal 
 ---
 
