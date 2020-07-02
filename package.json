@@ -2,7 +2,12 @@
   "name": "app",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:RaphaelTo/back_pizzaGo.git"
+  },
   "scripts": {
     "test": "mocha --ui tdd --require @babel/polyfill --require @babel/register src/tests/*.test.js",
     "start": "npm install && nodemon --exec babel-node -r dotenv/config src/server.js",
