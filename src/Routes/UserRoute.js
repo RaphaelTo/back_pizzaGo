@@ -198,10 +198,14 @@ anonymeRouteUser.route("/resetPassword/:token").post(async (req, res) => {
 });
 
 anonymeRouteUser.route("/checkuser").get(async (req, res) => {
+  let data = 'no user';
   const decode = await JWT.decode(req.headers["x-access-token"], {
     complete: true,
   });
-  const data = decode.payload;
-
+  
+  if(decode !== null) {
+    data = decode.payload;
+  }
+    
   res.json(data);
 });
