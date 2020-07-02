@@ -78,7 +78,7 @@ class OrderController {
         return new Promise(async (next) => {
             if (param.price  && param.status && param.user && param.content && param.promo) {
                 const Orders = await prisma.createOrder(param);
-                this.proccessPaiement(param.charge)
+                //this.proccessPaiement(param.charge)
                 next(success(Orders));
             } else {
                 next(success('Empty fields'));
