@@ -6,7 +6,7 @@
     <img src="./static/prisma.png" alt="PizzaGo" height="200">
   </a>
   <br>
-  PizzaGo - Interface client
+   PizzaGo - API with Prisma
   <br>
 </h1>
 
