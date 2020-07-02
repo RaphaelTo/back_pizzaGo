@@ -8,7 +8,7 @@ import {url} from './config';
 //Import middleware
 dotenv.config();
 import { checkToken } from './Middleware/JWT';
-c
+
 // Route import
 import { anonymeRouteUser, adminRouteUser } from './Routes/UserRoute';
 import { anonymeRouteDrink, adminRouteDrink } from './Routes/DrinkRoute';
