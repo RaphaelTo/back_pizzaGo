@@ -3,12 +3,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import {PORT, url} from './config';
+import {url} from './config';
 
 //Import middleware
 dotenv.config();
 import { checkToken } from './Middleware/JWT';
-
+c
 // Route import
 import { anonymeRouteUser, adminRouteUser } from './Routes/UserRoute';
 import { anonymeRouteDrink, adminRouteDrink } from './Routes/DrinkRoute';
@@ -21,6 +21,7 @@ import { anonymeRouteOrder, adminRouteOrder } from './Routes/OrderRoute';
 
 const app = express();
 const cors = require('cors')
+const PORT = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(morgan('dev'));
