@@ -40,7 +40,7 @@ export default class NodeMailer {
         return `
             <div>
                 <h1>Bienvenue sur Pizza GO </h1>
-                <p>Avant d'utiliser votre compte veuillez l'activer en cliquant <a href="http://localhost:3000/activateAccount?token=${token}">ici</a></p>
+                <p>Avant d'utiliser votre compte veuillez l'activer en cliquant <a href="https://pizza-go.herokuapp.com/activateAccount?token=${token}">ici</a></p>
             </div>
         `
     }
@@ -58,7 +58,7 @@ export default class NodeMailer {
         return `
             <div>
                 <h1>Vous avez oublié votre mot de passe ?</h1>
-                <p>Pour réinitialiser votre mot de passe cliquez <a href="http://localhost:3000/password/update-password?id=${token}">ici</a></p>
+                <p>Pour réinitialiser votre mot de passe cliquez <a href="https://pizza-go.herokuapp.com/password/update-password?id=${token}">ici</a></p>
             </div>
         `
     }

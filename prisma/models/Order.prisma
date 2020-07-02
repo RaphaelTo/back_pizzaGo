@@ -7,5 +7,4 @@ type Order {
     status: Float! @default(value: 1)
     user: User @relation(link: INLINE)  
     content: Json!
-    promo: Promo @relation(link: INLINE)
 }
